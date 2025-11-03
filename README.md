@@ -14,12 +14,12 @@ This starter project captures the vision, feasibility, and execution plan for bu
 
 ## Feasibility Snapshot
 
-| Concern                   | Notes                                                                                                                                        |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Branch-aware messages** | VS Code’s Git extension API exposes `repository.state.HEAD?.name`, so prefixing with `TASK-<branch>` is straightforward.                     |
-| **Diff inspection**       | Use `repository.diff` or read `repository.getStagedChanges()` to gather paths and status codes. This matches the current script’s behaviour. |
-| **Source Control UI**     | Set `repository.inputBox.value` to prefill the commit message. Add a quick pick or progress notification for confirmation before committing. |
-| **Copilot narrative**     | Use the Copilot Chat API to produce the commit body; fall back to deterministic templates if Copilot is unavailable or disabled.             |
+| Concern                   | Notes                                                                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Branch-aware messages** | VS Code’s Git extension API exposes `repository.state.HEAD?.name`, so prefixing with `TASK-<branch>` is straightforward.                                                              |
+| **Diff inspection**       | Use `repository.diff` or read `repository.getStagedChanges()` to gather paths and status codes. This matches the current script’s behaviour.                                          |
+| **Source Control UI**     | Set `repository.inputBox.value` to prefill the commit message, surface an SCM toolbar icon that triggers generation, and add a quick pick or progress notification before committing. |
+| **Copilot narrative**     | Use the Copilot Chat API to produce the commit body; fall back to deterministic templates if Copilot is unavailable or disabled.                                                      |
 
 Result: **Fully feasible.**
 
@@ -86,9 +86,10 @@ Only the README is committed now; scaffold files will be added in **Phase 2** (s
 ### Phase 6 – Source Control experience
 
 1. Prefill `repo.inputBox.value` with the generated message.
-2. Show a `window.showInformationMessage` preview and ask for confirmation.
-3. If the user confirms a "Commit now" action, call `repo.commit(message, { all: false })`.
-4. Add graceful failure handling (no staged files, detached HEAD, etc.).
+2. Surface a toolbar icon in the Source Control view that invokes the generation command.
+3. Show a `window.showInformationMessage` preview and ask for confirmation.
+4. If the user confirms a "Commit now" action, call `repo.commit(message, { all: false })`.
+5. Add graceful failure handling (no staged files, detached HEAD, etc.).
 
 ### Phase 7 – Configuration & polish
 
@@ -140,6 +141,7 @@ When you pick this up, keep a `docs/worklog.md` noting:
 - [ ] Run the VS Code extension generator (`npm create @vscode/ext@latest`).
 - [ ] Port message builder utilities into `src/commit-message`.
 - [ ] Wire up Git API command to populate the SCM input box.
+- [ ] Add a Source Control toolbar icon that triggers message generation.
 - [ ] Prototype the Copilot-powered narrative command and settings.
 - [ ] Document decisions in `docs/architecture.md`.
 
