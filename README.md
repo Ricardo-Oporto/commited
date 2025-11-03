@@ -10,16 +10,15 @@ This starter project captures the vision, feasibility, and execution plan for bu
 - Let the developer review/edit the message in the SCM input (no silent commits).
 - Optionally allow one-click commits after confirmation.
 
-Use this document as the single source of truth when you resume the work.
----
+## Use this document as the single source of truth when you resume the work.
 
 ## Feasibility Snapshot
 
-| Concern                       | Notes                                                                                                                                               |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Branch-aware messages**     | VS Code’s Git extension API exposes `repository.state.HEAD?.name`, so prefixing with `TASK-<branch>` is straightforward.                            |
-| **Diff inspection**           | Use `repository.diff` or read `repository.getStagedChanges()` to gather paths and status codes. This matches the current script’s behaviour.        |
-| **Source Control UI**         | Set `repository.inputBox.value` to prefill the commit message. Add a quick pick or progress notification for confirmation before committing.        |
+| Concern                   | Notes                                                                                                                                        |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Branch-aware messages** | VS Code’s Git extension API exposes `repository.state.HEAD?.name`, so prefixing with `TASK-<branch>` is straightforward.                     |
+| **Diff inspection**       | Use `repository.diff` or read `repository.getStagedChanges()` to gather paths and status codes. This matches the current script’s behaviour. |
+| **Source Control UI**     | Set `repository.inputBox.value` to prefill the commit message. Add a quick pick or progress notification for confirmation before committing. |
 
 Result: **Fully feasible.**
 

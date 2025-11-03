@@ -1,14 +1,17 @@
-import type { GitChangeInfo } from './generator';
+import type { GitChangeInfo } from "./generator";
 
-export function resolveBranchPrefix(pattern: string, rawBranchName: string): string {
+export function resolveBranchPrefix(
+  pattern: string,
+  rawBranchName: string
+): string {
   const branch = rawBranchName.trim();
-  const safeBranch = branch.split(/\s+/u).join('-');
-  return pattern.replace('${branch}', safeBranch);
+  const safeBranch = branch.split(/\s+/u).join("-");
+  return pattern.replace("${branch}", safeBranch);
 }
 
 export function summarizeChanges(changes: GitChangeInfo[]): string {
   if (!changes.length) {
-    return 'update project files';
+    return "update project files";
   }
 
   if (changes.length === 1) {
@@ -33,37 +36,37 @@ export function summarizeChanges(changes: GitChangeInfo[]): string {
 
 export function formatChangeList(changes: GitChangeInfo[]): string {
   if (!changes.length) {
-    return '- no staged files detected';
+    return "- no staged files detected";
   }
 
   return changes
     .map((change) => `- ${change.status} \`${change.relativePath}\``)
-    .join('\n');
+    .join("\n");
 }
 
 export function formatImpactSection(include: boolean): string {
   if (!include) {
-    return '';
+    return "";
   }
 
-  return ['','Impact:','- No breaking changes expected.'].join('\n');
+  return ["", "Impact:", "- No breaking changes expected."].join("\n");
 }
 
 export function sanitizeBodyLine(text: string): string {
-  return text.replace(/\s+$/u, '');
+  return text.replace(/\s+$/u, "");
 }
 
-function verbFor(status: GitChangeInfo['status']): string {
+function verbFor(status: GitChangeInfo["status"]): string {
   switch (status) {
-    case 'added':
-      return 'add';
-    case 'deleted':
-      return 'remove';
-    case 'renamed':
-      return 'rename';
-    case 'modified':
+    case "added":
+      return "add";
+    case "deleted":
+      return "remove";
+    case "renamed":
+      return "rename";
+    case "modified":
     default:
-      return 'update';
+      return "update";
   }
 }
 
@@ -75,8 +78,8 @@ function basename(path: string): string {
 function directoryName(path: string): string {
   const parts = path.split(/[\\/]/);
   if (parts.length <= 1) {
-    return '';
+    return "";
   }
 
-  return parts.slice(0, -1).join('/');
+  return parts.slice(0, -1).join("/");
 }
