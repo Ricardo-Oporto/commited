@@ -1,0 +1,59 @@
+{
+  "name": "commit-message-assistant",
+  "displayName": "Commit Message Assistant",
+  "description": "Generate conventional commit messages based on staged Git changes.",
+  "version": "0.0.1",
+  "publisher": "your-name",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "SCM Providers"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "commitAssistant.generateMessage",
+        "title": "Commit Assistant: Generate Message",
+        "category": "Commit Assistant"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Commit Assistant",
+      "properties": {
+        "commitAssistant.includeImpactSection": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Include an Impact section in generated commit messages."
+        },
+        "commitAssistant.branchPrefixPattern": {
+          "type": "string",
+          "default": "TASK-${branch}",
+          "markdownDescription": "Template applied to the branch name when generating the conventional commit prefix."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "package": "vsce package",
+    "check": "npm run compile && npm run test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^2.24.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.6.2"
+  }
+}
