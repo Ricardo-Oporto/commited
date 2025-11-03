@@ -52,7 +52,7 @@ Only the README is committed now; scaffold files will be added in **Phase 2** (s
 ### Phase 1 – Foundations (you are here)
 
 - ✅ Capture feasibility + scope (this README).
-- ☐ Decide on language/runtime (TypeScript recommended for VS Code extensions).
+- ☑ Decide on language/runtime (TypeScript recommended for VS Code extensions).
 
 ### Phase 2 – Skeleton Extension
 
