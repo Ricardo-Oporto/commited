@@ -56,11 +56,7 @@ Only the README is committed now; scaffold files will be added in **Phase 2** (s
 
 ### Phase 2 – Skeleton Extension
 
-1. Initialize extension scaffold:
-   ```bash
-   npm create @vscode/ext@latest commit-extension
-   ```
-   Use TypeScript + minimal dependencies.
+1. ☑ Initialize extension scaffold manually to match the TypeScript plan.
 2. Clean up generated README, wiring it to this plan.
 3. Add basic activation that logs "Commit Assistant activated".
 
